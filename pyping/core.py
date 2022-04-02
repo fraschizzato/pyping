@@ -387,9 +387,9 @@ class Ping(object):
         timeout = self.timeout / 1000.0
 
         while True:  # Loop while waiting for packet or timeout
-            select_start = default_timer()
+            select_start = time.time()
             inputready, outputready, exceptready = select.select([current_socket], [], [], timeout)
-            select_duration = (default_timer() - select_start)
+            select_duration = (time.time() - select_start)
             if inputready == []:  # timeout
                 return None, 0, 0, 0, 0
 
@@ -404,7 +404,7 @@ class Ping(object):
                 data=packet_data[20:28]
             )
 
-            receive_time = default_timer()
+            receive_time = time.time()
 
             if icmp_header["packet_id"] == self.own_id:  # Our packet
                 ip_header = self.header2dict(
