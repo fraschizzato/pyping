@@ -369,7 +369,7 @@ class Ping(object):
 
         packet = header + data
 
-        send_time = default_timer()
+        send_time = time.time()
 
         try:
             current_socket.sendto(packet, (self.destination, 1))  # Port number is irrelevant for ICMP
