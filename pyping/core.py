@@ -24,10 +24,10 @@ import time
 
 if sys.platform.startswith("win32"):
     # On Windows, the best timer is time.clock()
-    default_timer = int(time.perf_counter())
+    default_timer = time.time()
 else:
     # On most other platforms the best timer is time.time()
-    default_timer = int(time.perf_counter())
+    default_timer = time.time()
 
 # ICMP parameters
 ICMP_ECHOREPLY = 0  # Echo reply (per RFC792)
